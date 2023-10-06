@@ -13,7 +13,7 @@ class CoffeeShop {
     private static boolean isOpen = true;
     private static Map<String, Integer> selectedCoffeeQuantities = new HashMap<>();
     private static int userPoints = 0;
-    
+
     private static void resetState() {
         selectedCoffeeQuantities.clear();
     }
@@ -30,7 +30,7 @@ class CoffeeShop {
         coffeeOptions.add("Iced Coffee");
         coffeeOptions.add("Affogato");  
         coffeeOptions.add("Cortado");   
-    
+
         prices.add(15900);
         prices.add(23000);
         prices.add(17000);
@@ -43,7 +43,7 @@ class CoffeeShop {
         prices.add(18500);  
         prices.add(20000);  
     }
-    
+
 
     private static void listCoffeeOptions() {
         System.out.println("Pilihan Kopi:");
@@ -52,19 +52,19 @@ class CoffeeShop {
             System.out.println(coffeeLine);
         }
     }
-    
+
 
     private static void buyCoffee(Scanner scanner) {
         while (true) {
-            
+
             listCoffeeOptions();
             System.out.println("Jumlah kopi yang ingin dibeli (masukkan nomornya):");
             int choice = scanner.nextInt();
             scanner.nextLine();
-    
+
             if (choice >= 1 && choice <= coffeeOptions.size()) {
                 String selectedCoffee = coffeeOptions.get(choice - 1);
-    
+
                 System.out.println("Kamu memilih: " + selectedCoffee);
                 System.out.print("Masukkan jumlah yang ingin Anda beli: ");
                 int quantity = scanner.nextInt();
@@ -73,16 +73,16 @@ class CoffeeShop {
                 if (quantity <= 0) {
                     throw new IllegalArgumentException("Jumlahnya tidak valid. Silakan coba lagi.");
                 }
-    
+
                 selectedCoffeeQuantities.put(selectedCoffee,
                         selectedCoffeeQuantities.getOrDefault(selectedCoffee, 0) + quantity);
-    
+
                 System.out.println("Kopi ditambahkan ke keranjang Anda: " + selectedCoffee + " - Jumlah: " + quantity);
-    
+
                 System.out.print("Apakah Anda ingin kembali memilih kopi? (1. Ya, 2. Tidak): ");
                 int buyMoreChoice = scanner.nextInt();
                 scanner.nextLine();
-    
+
                 if (buyMoreChoice == 2) {
                     break; 
                 }
@@ -91,7 +91,7 @@ class CoffeeShop {
             }
         }
     }
-    
+
 
     private static void displayShoppingList() {
         if (selectedCoffeeQuantities.isEmpty()) {
@@ -122,52 +122,52 @@ class CoffeeShop {
 
     private static void checkout(String userName) {
         System.out.println("Terima kasih telah berbelanja, " + userName + "!");
-    
+
         System.out.println("\nInvoice Belanja untuk " + userName + ":");
         for (Map.Entry<String, Integer> entry : selectedCoffeeQuantities.entrySet()) {
             System.out.println(entry.getKey() + " - Jumlah: " + entry.getValue());
         }
-    
+
         double subtotal = calculateTotalPrice();
         double tax = 0.05 * subtotal;
         double totalAmount = subtotal + tax;
-    
+
         System.out.printf("Subtotal: %s\n", "Rp " + subtotal);
         System.out.printf("Tax (5%%): %s\n", "Rp " + tax);
         System.out.printf("Jumlah total (including tax): %s\n", "Rp " + totalAmount);
-    
+
         Random random = new Random();
         int randomCode = 1000 + random.nextInt(9000);
-    
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String currentTime = dateFormat.format(new Date());
-    
-      
+
+
         userPoints += 10;
-    
+
         System.out.println("\n======= Struk pembelian =======");
-        System.out.println("The Wawan Coffee");
+        System.out.println("SALUKI Coffee");
         System.out.println("Location: 102 Coffee Condet,Jakarta");
         System.out.println("Time: " + currentTime);
         System.out.println("Invoice Code: " + randomCode);
         System.out.printf("%-20s %-10s %-10s %-10s\n", "Coffee", "Harga", "Jumlah", "Total");
         System.out.println("--------------------------------");
-    
+
         for (int i = 0; i < coffeeOptions.size(); i++) {
             String coffee = coffeeOptions.get(i);
             int price = prices.get(i);
-    
+
             if (selectedCoffeeQuantities.containsKey(coffee)) {
                 int quantity = selectedCoffeeQuantities.get(coffee);
                 double itemTotal = price * quantity;
-    
+
                 System.out.printf("%-20s %s %-10d %s\n", coffee, "Rp " + price, quantity, "Rp " + itemTotal);
             }
         }
-           
+
         System.out.println("\n======= Struk pembelian =======");
         System.out.println("=====================================");
-        System.out.println("|          The Wawan Coffe          |");
+        System.out.println("|          SALUKI Coffe          |");
         System.out.println("|      Good coffee, good vibes!     |");
         System.out.println("       Terimakasih , " + userName + "!  "); 
         System.out.println("=====================================");
@@ -189,10 +189,10 @@ class CoffeeShop {
         System.out.println("================================");
 
         resetState();
-     
+
     }
-    
-    
+
+
 
     private static double calculateTotalPrice() {
         double total = 0;
@@ -206,7 +206,7 @@ class CoffeeShop {
     }
       private static void displayCoffeeShopInfo(String userName) {
         System.out.println("=====================================");
-        System.out.println("|          The Wawan Coffe          |");
+        System.out.println("|          SALUKI Coffe          |");
         System.out.println("|      Good coffee, good vibes!     |");
         System.out.println("    Selamat datang, " + userName + "!  "); 
         System.out.println("=====================================");
@@ -217,7 +217,7 @@ class CoffeeShop {
         System.out.println("\\      /              |    |         ");
         System.out.println(" `----'               |____|         ");
         System.out.println("====================================");
-        System.out.println(" Selamat datang, " + userName + " di The Wawan Coffee! ");
+        System.out.println(" Selamat datang, " + userName + " di SALUKI Coffee! ");
         System.out.println("Nikmati kopi terbaik di Jakarta berbagai pilihan kopi yang lezat.  ");
         System.out.println("Kami menyajikan kopi terbaik dengan suasana yang nyaman dan santai.");
         System.out.println("di lokasi kami yang nyaman.      ");
@@ -226,9 +226,9 @@ class CoffeeShop {
         System.out.println("====================================");
 
     }
-    
-    
-    
+
+
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -278,19 +278,19 @@ class CoffeeShop {
                         System.out.println("\n=== Checkout ===");
                         checkout(userName);
                         System.out.println("Terima kasih telah berbelanja, " + userName + "!");
-                        
-                     
+
+
                         boolean invalidOption = true;
                         while (invalidOption) {
                             System.out.println("Apakah Anda ingin?");
                             System.out.println("1. Kembali ke menu utama");
                             System.out.println("2. Masukkan alamat email untuk mendapatkan poin dan newsletter");
                             System.out.print("Pilihan Anda: ");
-                            
+
                             String email;
                             int choiceAfterCheckout = scanner.nextInt();
                             scanner.nextLine();
-                            
+
                             switch (choiceAfterCheckout) {
                                 case 1:
                                     isOpen = true;
@@ -299,7 +299,7 @@ class CoffeeShop {
                                 case 2:
                                     System.out.print("Masukkan alamat email Anda: ");
                                     email = scanner.nextLine();
-                                 
+
                                     System.out.println("Alamat email: " + email);
                                     System.out.println("Poin telah ditambahkan ke akun Anda.");
                                     System.out.println("Anda akan menerima newsletter kami.");
@@ -312,8 +312,8 @@ class CoffeeShop {
                             }
                         }
                         break;
-                    
-                    
+
+
                     case 4:
                         System.out.println("Selamat tinggal, " + userName + "!");
                         isOpen = false;
